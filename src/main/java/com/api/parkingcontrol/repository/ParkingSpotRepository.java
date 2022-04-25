@@ -9,6 +9,10 @@ import java.util.UUID;
 @Repository
 public interface ParkingSpotRepository extends JpaRepository<ParkingSpotModel, UUID> {
 
-    @Override
-    <S extends ParkingSpotModel> S save(S entity);
+    boolean existsByLicensePlateCar(String licensePlateCar);
+    boolean existsByParkingSpotNumber(String parkingSpotNumber);
+    boolean existsByApartamentAndBlock (String apartament, String block);
+
+
+
 }

@@ -1,8 +1,13 @@
 package com.api.parkingcontrol.service;
 
+import com.api.parkingcontrol.dto.ParkingSpotDto;
+import com.api.parkingcontrol.model.ParkingSpotModel;
 import com.api.parkingcontrol.repository.ParkingSpotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 
 @Service
 public class ParkingSpotService {
@@ -13,6 +18,16 @@ public class ParkingSpotService {
         this.parkingSpotRepository = parkingSpotRepository;
     }
 
-    
+    @Transactional
+    public ParkingSpotModel save(ParkingSpotModel parkingSpotModel) {
+        return parkingSpotRepository.save(parkingSpotModel);
+    }
 
+    public boolean existsByLicensePlateCar(String licensePlateCar){
+        return parkingSpotRepository.existsByLicensePlateCar(licensePlateCar);
+    }
+
+    public boolean existsByParkingSpotNumber(String parkingSpotNumber) {
+        return parkingSpotRepository.existsByParkingSpotNumber(parkingSpotNumber);
+    }
 }
